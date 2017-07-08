@@ -2,7 +2,7 @@
 
 <md-sidenav-container (backdropClick)="closeSidenav()" style="height: 100%" fullscreen>
 
-  <md-sidenav [opened]="sideNavOpen" mode="push">
+  <md-sidenav [opened]="showSidenav$ | async" mode="push">
     <md-nav-list>
       <app-nav-item (activate)="closeSidenav()" routerLink="/" icon="home" hint="Beam me up Scotty!">
         Home
