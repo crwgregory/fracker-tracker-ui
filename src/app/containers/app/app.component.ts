@@ -11,13 +11,12 @@ import {Observable} from "rxjs/Observable";
 })
 export class AppComponent {
 
-  showSidenav$: Observable<boolean>;
-  loading$: Observable<boolean>;
-  subtitle$: Observable<string>;
+  showSidenav$: Observable<boolean> = null;
+  loading$: Observable<boolean> = null;
+  subtitle$: Observable<string> = null;
 
   constructor(private store: Store<fromRoot.State>) {
     this.showSidenav$ = this.store.select(fromRoot.getShowSidenav);
-    this.loading$ = this.store.select(fromRoot.getIsLoading);
     this.subtitle$ = this.store.select(fromRoot.getSubtitle);
   }
 

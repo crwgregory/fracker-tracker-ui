@@ -42,6 +42,6 @@ export function reducer(state = initialState, action: drillsites.Actions): State
 
 export const getEntities = (state: State) => state.entities;
 export const getIds = (state: State) => state.ids;
-export const getSites = createSelector(getIds, getEntities, (ids, entites) => {
-  return ids.map(id => entites[id])
+export const getSites = createSelector(getIds, getEntities, (ids, entities) => {
+  return ids.map(id => entities[id])
 });

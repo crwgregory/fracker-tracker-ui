@@ -1,4 +1,7 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
+import {Store} from "@ngrx/store";
+import * as fromRoot from "../store/reducers/index"
+import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: 'app-toolbar',
@@ -16,7 +19,7 @@ import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@
     </ul>
     
   </md-toolbar>
-  <md-progress-bar *ngIf="loading"
+  <md-progress-bar *ngIf="loading$ | async"
     class="example-margin"
     color="primary"
     mode="query">
@@ -41,9 +44,11 @@ import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@
   ]
 })
 export class ToolbarComponent {
-  @Input() loading: boolean = false;
   @Input() title: string;
   @Input() subtitle: string;
   @Output() openMenu = new EventEmitter();
-  constructor() { }
+  loading$: Observable<boolean>;
+  constructor(private store: Store<fromRoot.State>) {
+    this.loading$ = this.store.select(fromRoot.getIsLoading);
+  }
 }
